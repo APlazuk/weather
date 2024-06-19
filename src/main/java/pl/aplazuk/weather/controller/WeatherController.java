@@ -15,7 +15,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200/")
-public class LocationController {
+public class WeatherController {
 
     private Coordinates coordinates;
 
@@ -23,7 +23,7 @@ public class LocationController {
     private static final String RADAR_VIEWER_URL = "https://api.rainviewer.com/public/weather-maps.json";
     private final RestClient restClient = RestClient.create();
 
-    public LocationController() {
+    public WeatherController() {
     }
 
     protected ResponseEntity<Location[]> getLocation(String city) {
