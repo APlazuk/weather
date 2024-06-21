@@ -1,5 +1,5 @@
 
-package pl.aplazuk.weather.model;
+package pl.aplazuk.weather.model.location;
 
 import java.util.LinkedHashMap;
 import java.util.List;

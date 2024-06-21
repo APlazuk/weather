@@ -1,9 +1,9 @@
 
-package pl.aplazuk.weather.model;
+package pl.aplazuk.weather.model.weatherinfo;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,23 +13,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "infrared"
+    "symbol_code"
 })
-public class Satellite {
+public class Summary {
 
-    @JsonProperty("infrared")
-    private List<Infrared> infrared;
+    @JsonProperty("symbol_code")
+    private String symbolCode;
     @JsonIgnore
     private final Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("infrared")
-    public List<Infrared> getInfrared() {
-        return infrared;
+    @JsonProperty("symbol_code")
+    public String getSymbolCode() {
+        return symbolCode;
     }
 
-    @JsonProperty("infrared")
-    public void setInfrared(List<Infrared> infrared) {
-        this.infrared = infrared;
+    @JsonProperty("symbol_code")
+    public void setSymbolCode(String symbolCode) {
+        this.symbolCode = symbolCode;
     }
 
     @JsonAnyGetter

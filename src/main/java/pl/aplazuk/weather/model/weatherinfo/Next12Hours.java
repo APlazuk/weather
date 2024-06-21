@@ -1,9 +1,9 @@
 
-package pl.aplazuk.weather.model;
+package pl.aplazuk.weather.model.weatherinfo;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,36 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "past",
-    "nowcast"
+    "details",
+    "summary"
 })
-public class Radar {
 
-    @JsonProperty("past")
-    private List<Past> past;
-    @JsonProperty("nowcast")
-    private List<Nowcast> nowcast;
+public class Next12Hours {
+
+    @JsonProperty("details")
+    private Details__1 details;
+    @JsonProperty("summary")
+    private Summary summary;
     @JsonIgnore
     private final Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("past")
-    public List<Past> getPast() {
-        return past;
+    @JsonProperty("details")
+    public Details__1 getDetails() {
+        return details;
     }
 
-    @JsonProperty("past")
-    public void setPast(List<Past> past) {
-        this.past = past;
+    @JsonProperty("details")
+    public void setDetails(Details__1 details) {
+        this.details = details;
     }
 
-    @JsonProperty("nowcast")
-    public List<Nowcast> getNowcast() {
-        return nowcast;
+    @JsonProperty("summary")
+    public Summary getSummary() {
+        return summary;
     }
 
-    @JsonProperty("nowcast")
-    public void setNowcast(List<Nowcast> nowcast) {
-        this.nowcast = nowcast;
+    @JsonProperty("summary")
+    public void setSummary(Summary summary) {
+        this.summary = summary;
     }
 
     @JsonAnyGetter

@@ -1,4 +1,4 @@
-package pl.aplazuk.weather.model;
+package pl.aplazuk.weather.model.rainviewer;
 
 import java.util.List;
 

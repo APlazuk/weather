@@ -1,7 +1,5 @@
 package pl.aplazuk.weather.model;
 
-import java.math.BigDecimal;
-
 public class Coordinates {
     private Double lat;
     private Double lng;

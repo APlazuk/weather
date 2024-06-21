@@ -1,8 +1,9 @@
 
-package pl.aplazuk.weather.model;
+package pl.aplazuk.weather.model.weatherinfo;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,36 +13,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "time",
-    "path"
+    "symbol_code"
 })
-public class Nowcast {
 
-    @JsonProperty("time")
-    private Integer time;
-    @JsonProperty("path")
-    private String path;
+public class Summary__2 {
+
+    @JsonProperty("symbol_code")
+    private String symbolCode;
     @JsonIgnore
     private final Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("time")
-    public Integer getTime() {
-        return time;
+    @JsonProperty("symbol_code")
+    public String getSymbolCode() {
+        return symbolCode;
     }
 
-    @JsonProperty("time")
-    public void setTime(Integer time) {
-        this.time = time;
-    }
-
-    @JsonProperty("path")
-    public String getPath() {
-        return path;
-    }
-
-    @JsonProperty("path")
-    public void setPath(String path) {
-        this.path = path;
+    @JsonProperty("symbol_code")
+    public void setSymbolCode(String symbolCode) {
+        this.symbolCode = symbolCode;
     }
 
     @JsonAnyGetter

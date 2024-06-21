@@ -1,7 +1,8 @@
 
-package pl.aplazuk.weather.model;
+package pl.aplazuk.weather.model.rainviewer;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -12,36 +13,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "time",
-    "path"
+    "past",
+    "nowcast"
 })
-public class Past {
+public class Radar {
 
-    @JsonProperty("time")
-    private Integer time;
-    @JsonProperty("path")
-    private String path;
+    @JsonProperty("past")
+    private List<Past> past;
+    @JsonProperty("nowcast")
+    private List<Nowcast> nowcast;
     @JsonIgnore
     private final Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("time")
-    public Integer getTime() {
-        return time;
+    @JsonProperty("past")
+    public List<Past> getPast() {
+        return past;
     }
 
-    @JsonProperty("time")
-    public void setTime(Integer time) {
-        this.time = time;
+    @JsonProperty("past")
+    public void setPast(List<Past> past) {
+        this.past = past;
     }
 
-    @JsonProperty("path")
-    public String getPath() {
-        return path;
+    @JsonProperty("nowcast")
+    public List<Nowcast> getNowcast() {
+        return nowcast;
     }
 
-    @JsonProperty("path")
-    public void setPath(String path) {
-        this.path = path;
+    @JsonProperty("nowcast")
+    public void setNowcast(List<Nowcast> nowcast) {
+        this.nowcast = nowcast;
     }
 
     @JsonAnyGetter

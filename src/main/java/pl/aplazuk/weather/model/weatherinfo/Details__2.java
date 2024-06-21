@@ -1,8 +1,9 @@
 
-package pl.aplazuk.weather.model;
+package pl.aplazuk.weather.model.weatherinfo;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,36 +13,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "time",
-    "path"
+    "precipitation_amount"
 })
-public class Infrared {
+public class Details__2 {
 
-    @JsonProperty("time")
-    private Integer time;
-    @JsonProperty("path")
-    private String path;
+    @JsonProperty("precipitation_amount")
+    private Integer precipitationAmount;
     @JsonIgnore
     private final Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("time")
-    public Integer getTime() {
-        return time;
+    @JsonProperty("precipitation_amount")
+    public Integer getPrecipitationAmount() {
+        return precipitationAmount;
     }
 
-    @JsonProperty("time")
-    public void setTime(Integer time) {
-        this.time = time;
-    }
-
-    @JsonProperty("path")
-    public String getPath() {
-        return path;
-    }
-
-    @JsonProperty("path")
-    public void setPath(String path) {
-        this.path = path;
+    @JsonProperty("precipitation_amount")
+    public void setPrecipitationAmount(Integer precipitationAmount) {
+        this.precipitationAmount = precipitationAmount;
     }
 
     @JsonAnyGetter

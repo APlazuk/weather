@@ -1,5 +1,5 @@
 
-package pl.aplazuk.weather.model;
+package pl.aplazuk.weather.model.rainviewer;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
