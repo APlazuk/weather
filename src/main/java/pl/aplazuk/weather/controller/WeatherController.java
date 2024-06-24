@@ -21,7 +21,7 @@ import java.util.Optional;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "${app.url}")
 public class WeatherController {
 
     private Coordinates coordinates;
