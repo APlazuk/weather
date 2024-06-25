@@ -22,6 +22,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
 @CrossOrigin(origins = "${app.url}")
+@RequestMapping(value = "/weather")
 public class WeatherController {
 
     private Coordinates coordinates;
@@ -79,7 +80,7 @@ public class WeatherController {
         return optionalCoordinate.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(locationResponseEntity.getStatusCode()).build());
     }
 
-    @PostMapping(value = "/weather-nowcast", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/nowcast", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WeatherNowcast> getWeatherNowcast(@RequestParam(required = true) String mapZoom, @RequestBody Coordinates defaultCoordinates) {
         ResponseEntity<RainViewer> rainViewerResponseEntity = getWeatherMap();
         Optional<WeatherNowcast> weatherNowcast = Optional.empty();
@@ -91,7 +92,7 @@ public class WeatherController {
         return weatherNowcast.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(rainViewerResponseEntity.getStatusCode()).build());
     }
 
-    @GetMapping(value = "weather-info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Timeseries> getWeatherInfo(@RequestParam String lat, @RequestParam String lng) {
         ResponseEntity<WeatherInfo> weatherMiniInfo = getWeatherMiniInfo(new Coordinates(Double.parseDouble(lat), Double.parseDouble(lng)));
         Timeseries weatherTimeseries;
