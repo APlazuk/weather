@@ -3,6 +3,7 @@ package pl.aplazuk.weather.service;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.aplazuk.weather.model.Coordinates;
@@ -21,25 +22,32 @@ public class MapService {
 
     private static final String LOCATION_COORDINATES_URL = "https://nominatim.openstreetmap.org/search";
     private static final String RADAR_VIEWER_URL = "https://api.rainviewer.com/public/weather-maps.json";
-    private final RestClient restClient = RestClient.create();
+    private final RestClient.Builder restClient;
+
+    public MapService(RestClient.Builder restClient) {
+        this.restClient = restClient;
+    }
+
 
     public ResponseEntity<Location[]> getLocation(String city) {
-        return restClient.get()
+        return restClient.build().get()
                 .uri(getLocationCoordinatesUri(city))
                 .accept(APPLICATION_JSON)
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, (request, response) -> {
                     ResponseEntity.status(response.getStatusCode()).body(response.getStatusText());
+                    throw new HttpClientErrorException(response.getStatusCode());
                 })
                 .toEntity(Location[].class);
     }
 
     public ResponseEntity<RainViewer> getWeatherMap() {
-        return restClient.get()
+        return restClient.build().get()
                 .uri(RADAR_VIEWER_URL)
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, ((request, response) -> {
                     ResponseEntity.status(response.getStatusCode()).body(response.getStatusText());
+                    throw new HttpClientErrorException(response.getStatusCode());
                 }))
                 .toEntity(RainViewer.class);
     }
@@ -59,8 +67,8 @@ public class MapService {
     private static URI getLocationCoordinatesUri(String city) {
         return UriComponentsBuilder.fromHttpUrl(LOCATION_COORDINATES_URL)
                 .queryParam("city", city)
-                .queryParam("addressdetails", 1)
                 .queryParam("format", "jsonv2")
+                .queryParam("addressdetails", 1)
                 .queryParam("limit", 1)
                 .build()
                 .toUri();

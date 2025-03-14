@@ -220,4 +220,25 @@ public class Location {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Location{" +
+                "placeId=" + placeId +
+                ", licence='" + licence + '\'' +
+                ", osmType='" + osmType + '\'' +
+                ", osmId=" + osmId +
+                ", lat=" + lat +
+                ", lng=" + lng +
+                ", category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", placeRank=" + placeRank +
+                ", importance=" + importance +
+                ", addresstype='" + addresstype + '\'' +
+                ", name='" + name + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", address=" + address +
+                ", boundingbox=" + boundingbox +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }
